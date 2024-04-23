@@ -16,11 +16,6 @@ public class TestController {
     private TestService testService;
 
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World!" ;
-    }
-
     @GetMapping("/test/list")
     public List<Test> list() {
         return testService.list();
