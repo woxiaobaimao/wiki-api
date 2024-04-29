@@ -36,10 +36,25 @@ public class DocController {
         return resp;
     }
 
-    @DeleteMapping("/delete/{id}")
-    public CommonResp delete(@PathVariable Long id) {
-        CommonResp<CommonResp> resp = new CommonResp<>();
-        docService.delete(id);
+    @PostMapping("/save")
+    public CommonResp save(@Valid @RequestBody DocSaveReq req) {
+        CommonResp resp = new CommonResp<>();
+        docService.save(req);
         return resp;
     }
+
+    @DeleteMapping("/delete/{idsStr}")
+    public CommonResp delete(@PathVariable String idsStr) {
+        CommonResp resp = new CommonResp<>();
+        List<String> list = Arrays.asList(idsStr.split(","));
+        docService.delete(list);
+        return resp;
+    }
+//    @GetMapping("/find-content/{id}")
+//    public CommonResp findContent(@PathVariable Long id) {
+//        CommonResp<String> resp = new CommonResp<>();
+//        String content = docService.findContent(id);
+//        resp.setContent(content);
+//        return resp;
+//    }
 }
