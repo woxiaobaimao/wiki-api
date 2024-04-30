@@ -1,10 +1,8 @@
 package com.jiawa.wiki.interceptor;
 
-import com.alibaba.fastjson.JSON;
-import com.jiawa.wiki.resp.UserLoginResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     private static final Logger LOG = LoggerFactory.getLogger(LoginInterceptor.class);
 
     @Resource
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -49,7 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return false;
         }
-        Object object = redisTemplate.opsForValue().get(token);
+        Object object = stringRedisTemplate.opsForValue().get(token);
         if (object == null) {
             LOG.warn( "token无效，请求被拦截" );
             response.setStatus(HttpStatus.UNAUTHORIZED.value());

@@ -6,7 +6,7 @@
     <result column="ebook_id" jdbcType="BIGINT" property="ebookId" />
     <result column="parent" jdbcType="BIGINT" property="parent" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="sort" jdbcType="VARCHAR" property="sort" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="vote_count" jdbcType="INTEGER" property="voteCount" />
   </resultMap>
@@ -106,7 +106,7 @@
       `name`, sort, view_count, 
       vote_count)
     values (#{id,jdbcType=BIGINT}, #{ebookId,jdbcType=BIGINT}, #{parent,jdbcType=BIGINT}, 
-      #{name,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, #{viewCount,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
       #{voteCount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jiawa.wiki.domain.Doc">
@@ -148,7 +148,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
-        #{sort,jdbcType=VARCHAR},
+        #{sort,jdbcType=INTEGER},
       </if>
       <if test="viewCount != null">
         #{viewCount,jdbcType=INTEGER},
@@ -180,7 +180,7 @@
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.sort != null">
-        sort = #{record.sort,jdbcType=VARCHAR},
+        sort = #{record.sort,jdbcType=INTEGER},
       </if>
       <if test="record.viewCount != null">
         view_count = #{record.viewCount,jdbcType=INTEGER},
@@ -199,7 +199,7 @@
       ebook_id = #{record.ebookId,jdbcType=BIGINT},
       parent = #{record.parent,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
-      sort = #{record.sort,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
       vote_count = #{record.voteCount,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -219,7 +219,7 @@
         `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
-        sort = #{sort,jdbcType=VARCHAR},
+        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="viewCount != null">
         view_count = #{viewCount,jdbcType=INTEGER},
@@ -235,7 +235,7 @@
     set ebook_id = #{ebookId,jdbcType=BIGINT},
       parent = #{parent,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       vote_count = #{voteCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

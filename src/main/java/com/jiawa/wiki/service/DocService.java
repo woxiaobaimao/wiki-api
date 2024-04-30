@@ -5,8 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.jiawa.wiki.domain.Content;
 import com.jiawa.wiki.domain.Doc;
 import com.jiawa.wiki.domain.DocExample;
-import com.jiawa.wiki.exception.BusinessException;
-import com.jiawa.wiki.exception.BusinessExceptionCode;
 import com.jiawa.wiki.mapper.ContentMapper;
 import com.jiawa.wiki.mapper.DocMapper;
 import com.jiawa.wiki.req.DocQueryReq;
@@ -17,9 +15,7 @@ import com.jiawa.wiki.util.CopyUtil;
 import com.jiawa.wiki.util.SnowFlake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
@@ -112,14 +108,14 @@ public class DocService {
         docMapper.deleteByExample(docExample);
     }
 
-//    public String findContent(Long id) {
-//        Content content = contentMapper.selectByPrimaryKey(id);
-//        // 文档阅读数+1
+    public String findContent(Long id) {
+        Content content = contentMapper.selectByPrimaryKey(id);
+        // 文档阅读数+1
 //        docMapperCust.increaseViewCount(id);
-//        if (ObjectUtils.isEmpty(content)) {
-//            return "";
-//        } else {
-//            return content.getContent();
-//        }
-//    }
+        if (ObjectUtils.isEmpty(content)) {
+            return "";
+        } else {
+            return content.getContent();
+        }
+    }
 }

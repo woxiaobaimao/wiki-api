@@ -32,10 +32,10 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                         "/ebook-snapshot/**"
                 );
 
-        registry.addInterceptor(actionInterceptor)
-                .addPathPatterns(
-                        "/*/save",
-                        "/*/delete/**",
-                        "/*/reset-password");
+//        registry.addInterceptor(actionInterceptor)
+//                .addPathPatterns(
+//                        "/*/save",
+//                        "/*/delete/**",
+//                        "/*/reset-password");
     }
 }
